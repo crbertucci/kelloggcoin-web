@@ -13,12 +13,11 @@ Transactions
 
 <% receiver=User.find_by({"id" => icotransaction["to_user_id"]})%>
 
-<li>ICO is <%= icotransaction["amount"]%> KC to <%=receiver["name"]%></li>
+<li>Initial Coin Offering: <%= icotransaction["amount"]%> KC to <%=receiver["name"]%></li>
 <% end %>
 
 
 <% transactions = Transaction.where.not(from_user_id: nil).all %>
-
 
 <% for transaction in transactions %>
 
@@ -32,8 +31,13 @@ Transactions
 
 <!-- Step 2: Calculate and display the balances -->
 
+<p> Balances </P>
 
-<!-- 
+ <!-- Display the balances for each user – the expected balances are included with the starter code
+ # Use a loop to iterate through each user in the `users` table – don't hard-code – assume that the users and associated data could change
+- ActiveRecord supports the SQL aggregate `SUM` function – e.g. `Transaction.where({ "to_user_id" => 123 }).sum("amount")`
+
+
 Expected balances:
 Balance for Brian: 1348 KC
 Balance for Ben: 2516 KC
