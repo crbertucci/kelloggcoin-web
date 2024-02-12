@@ -2,23 +2,42 @@
 
 <!-- Step 1: List all transactions, starting with the ICO -->
 
-<% transactions = Transaction.all %>
+<% icotransactions = Transaction.where(from_user_id: nil).all %>
+
 <p>
-Test
+Transactions
+</p>
+
+<ul>
+<% for icotransaction in icotransactions %>
+
+<% sender=User.find_by({"id" => icotransaction["from_user_id"]})%>
+<% receiver=User.find_by({"id" => icotransaction["to_user_id"]})%>
+
+<li><%= icotransaction["amount"]%> KC from <%=sender["name"]%>  to <%=receiver["name"]%></li>
+<% end %>
+
+</ul> 
+
+<% transactions = Transaction.where.not(from_user_id: nil).all %>
+
+<p>
+Transactions
 </p>
 
 <ul>
 <% for transaction in transactions %>
 
-<% user=User.find_by({"id" => transaction["from_user_id"]}) %>
+<% sender=User.find_by({"id" => transaction["from_user_id"]})%>
+<% receiver=User.find_by({"id" => transaction["to_user_id"]})%>
 
-
-<li><%= transaction["amount"]%> KC from <%= transaction["from_user_id"]%> to <%= transaction["to_user_id"] %></li>
+<li><%= transaction["amount"]%> KC from <%=sender["name"]%>  to <%=receiver["name"]%></li>
 <% end %>
 
 </ul> 
 
 <!-- Step 2: Calculate and display the balances -->
+
 
 <!-- 
 Expected balances:
