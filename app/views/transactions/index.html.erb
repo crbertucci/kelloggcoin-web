@@ -10,9 +10,10 @@ Test
 <ul>
 <% for transaction in transactions %>
 
-<% user=User.find_by({"id" => transaction["to_user_id"]}) %>
+<% user=User.find_by({"id" => transaction["from_user_id"]}) %>
 
-<li><%= user["name"]%> <%= transaction["amount"]%> KC </li>
+
+<li><%= transaction["amount"]%> KC from <%= user["name"]%> to </li>
 <% end %>
 
 </ul> 
