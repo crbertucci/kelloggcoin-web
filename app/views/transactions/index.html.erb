@@ -13,7 +13,7 @@ Test
 <% user=User.find_by({"id" => transaction["from_user_id"]}) %>
 
 
-<li><%= transaction["amount"]%> KC from <%= user["name"]%> to </li>
+<li><%= transaction["amount"]%> KC from <%= transaction["from_user_id"]%> to <%= transaction["to_user_id"] %></li>
 <% end %>
 
 </ul> 
