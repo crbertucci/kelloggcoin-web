@@ -11,21 +11,15 @@ Transactions
 <ul>
 <% for icotransaction in icotransactions %>
 
-<% sender=User.find_by({"id" => icotransaction["from_user_id"]})%>
 <% receiver=User.find_by({"id" => icotransaction["to_user_id"]})%>
 
-<li><%= icotransaction["amount"]%> KC from <%=sender["name"]%>  to <%=receiver["name"]%></li>
+<li>ICO is <%= icotransaction["amount"]%> KC to <%=receiver["name"]%></li>
 <% end %>
 
-</ul> 
 
 <% transactions = Transaction.where.not(from_user_id: nil).all %>
 
-<p>
-Transactions
-</p>
 
-<ul>
 <% for transaction in transactions %>
 
 <% sender=User.find_by({"id" => transaction["from_user_id"]})%>
